@@ -26,7 +26,7 @@ function App() {
           element: <ContactContainer />
         },
         {
-          path: '/product-detail/:id/custom/:wulan',
+          path: '/product',
           element: <ProductContainer />
         },
         {
