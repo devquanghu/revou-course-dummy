@@ -1,47 +1,21 @@
 import { Button, Card } from '../../components';
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useRef } from 'react';
 import Pokemon from './Pokemon';
-
-interface PokemonData {
-    name: string;
-}
-
-interface ResponseData {
-    results: PokemonData[];
-}
+import { useFetchingPokemon } from '../../hooks';
 
 const HomeContainer = () => {
 
-    const [pokemons, setPokemons] = useState<PokemonData[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const fetchingPokemon = useCallback(
-        async () => {
-            setPokemons([])
-            const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
-            const data: ResponseData = await response.json();
-            const result = data.results
-            setPokemons(result)
-        },
-        []
-    );
-
-
-
-    useEffect(
-        () => {
-            fetchingPokemon()
-        },
-        [fetchingPokemon]
-    );
-
-
+    const { data, fetchingPokemon } = useFetchingPokemon({
+        enabled: false
+    });
 
     return (
         <Card border={false} className={'flex flex-col gap-2.5'}>
             <Card border>
-                <Pokemon pokemons={pokemons}/>
-                <Button label={'Fetch Ulang'} onClick={() => fetchingPokemon()}/>
+                <Pokemon pokemons={data}/>
+                <Button label={'Fetch Ulang'} onClick={ () => fetchingPokemon()}/>
                 <Button label={'Update Value'} onClick={() => {
                     inputRef.current!.value  = 'asd'
                 }}/>
