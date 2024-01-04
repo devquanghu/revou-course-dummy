@@ -33,6 +33,7 @@ const Navbar = () => {
                         <Link className='bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium' to={'/about'}> About</Link>
                         <button onClick={() => navigate('/contact')} className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Contact Us</button>
                         <Link className='bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium' to={'/protect'}> Protect</Link>
+                        <Link className='bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium' to={'/user'}> User</Link>
 
                     </div>
                     </div>

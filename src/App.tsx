@@ -1,10 +1,11 @@
 
 import './App.css'
-import { HomeContainer, AboutContainer, ContactContainer, ProductContainer, ProtectContainer } from './containers';
+import { HomeContainer, AboutContainer, ContactContainer, ProductContainer, ProtectContainer, UserContainer } from './containers';
 // import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout';
 import ProtectLayout from './layouts/ProtectLayout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ContextProvider from './providers/ContextProvider';
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
           path: '/product-detail/:id/custom/:wulan',
           element: <ProductContainer />
         },
+        {
+          path: '/user',
+          element: <UserContainer />
+        }
       ]
     },
     {
@@ -47,7 +52,9 @@ function App() {
 
   return (
     <div className="app">
-      <RouterProvider router={router}/>
+      <ContextProvider>
+        <RouterProvider router={router}/>
+      </ContextProvider>
       {/* <BrowserRouter>
         <Routes>
           <Route element={<PublicLayout />}>
